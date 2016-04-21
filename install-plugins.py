@@ -11,6 +11,9 @@ def setupPathogen():
         else:
             print "creating folder '%s'" % folder 
             os.mkdir(folder)
+    os.chdir("autoload")
+    subprocess.check_call(["curl", "-O", "https://raw.githubusercontent.com/tpope/vim-pathogen/master/autoload/pathogen.vim"])
+    os.chdir("../")
 
 
 def installPlugins():
@@ -39,9 +42,10 @@ def installVimrc():
     os.symlink("vimrc", ".vimrc")
     if not os.path.exists("../.vimrc"):
         os.rename(".vimrc", "../.vimrc")
+        os.remove(".vimrc")
+        print "Vimrc has been installed."
     else:
         print "../.vimrc already exists"
-    os.remove(".vimrc")
 
 setupPathogen()
 installPlugins()
