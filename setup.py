@@ -2,6 +2,8 @@
 import os
 import subprocess
 import shutil
+import getpass
+import sys
 
 def setupPathogen():
     for folder in ['bundle', 'autoload']:
@@ -37,18 +39,21 @@ def installPlugins():
 
     os.chdir("../")
 
-def installVimrc():
-    print "Installing VIM configuration file."
-    print "Creating symlink between vimrc and ../.vimrc"
-    os.symlink("vimrc", ".vimrc")
-    if not os.path.exists("../.vimrc"):
-        os.rename(".vimrc", "../.vimrc")
-        os.remove(".vimrc")
-        print "Vimrc has been installed."
-    else:
-        print "../.vimrc already exists"
+def setupGit():
+    answer = raw_input("Would you like to set up Git? (y/n)")
 
-setupPathogen()
-installPlugins()
-installVimrc()
+    if answer == "y":
+        subprocess.check_call(["git", "config", "--global", "-e"])
+    elif answer =="n":
+        pass
+    else:
+        raise Exception("Invalid response")
+
+def main():
+    setupPathogen()
+    installPlugins()
+    setupGit()
+
+if __name__ == '__main__': main()
+
 
