@@ -23,6 +23,7 @@ def installPlugins():
         "https://github.com/scrooloose/nerdtree",
         "https://github.com/vim-airline/vim-airline",
         "https://github.com/chase/vim-ansible-yaml",
+        "https://github.com/kchmck/vim-coffee-script",
         "https://github.com/altercation/vim-colors-solarized",
         "https://github.com/Glench/Vim-Jinja2-Syntax",
         "https://github.com/derekwyatt/vim-scala"
